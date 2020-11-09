@@ -1,0 +1,33 @@
+package co.unicauca.restaurante.servidor.acceso;
+
+/**
+ *fabrica que instacia un repositorio concreto, este repositorio accede a la base de datos
+ * @author jhonfer ruiz
+ * @author Jhonny Rosero
+ */
+public class FabricaRepositorio {
+    
+    private static FabricaRepositorio instance;
+    
+    private FabricaRepositorio(){
+    }
+    /**
+     * retorno solo una instancia de fabrica
+     * singleton
+     * @return instancia de FabricaRepositorio
+     */
+    public static FabricaRepositorio getInstance(){
+        if(instance == null){
+            instance = new FabricaRepositorio();
+        }
+        return instance;
+    }
+    /**
+     * retorna un repositorio
+     * @return instancia del repositorio
+     */
+    public IPlatoRepositorio getRepository(){
+        IPlatoRepositorio repositorio = new RestauranteRepositorioMysql();
+        return repositorio;
+    }
+}
